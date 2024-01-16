@@ -1,18 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Innerquiz
- */
 class Employee {
     private String name;
-    private int ID;
+    private int id;
     private double salary;
 
-    public Employee(String name, int ID) {
+    public Employee(String name, int id) {
         this.name = name;
-        this.ID = ID;
-
+        this.id = id;
     }
 
     public void setSalary(double salary) {
@@ -24,7 +20,7 @@ class Employee {
     }
 
     public int getId() {
-        return ID;
+        return id;
     }
 
     public double getSalary() {
@@ -33,66 +29,65 @@ class Employee {
 
     @Override
     public String toString() {
-        return "Employee{id=" + ID + ", name='" + name + "', salary=" + salary + '}';
+        return "Employee{id=" + id + ", name='" + name + "', salary=" + salary + '}';
     }
-
 }
 
-class EmployeeManagement {
-    private ArrayList<Employee> EmployeeManagement = new ArrayList<>();
+class EmployeeManagementSystem {
+    private ArrayList<Employee> employees = new ArrayList<>();
 
-    public void addEmployee(String name, int ID, double salary) {
-        //// Add Employee
-        Employee employee = new Employee(name, ID);
+    public void addEmployee(String name, int id, double salary) {
+        Employee employee = new Employee(name, id);
         employee.setSalary(salary);
-        EmployeeManagement.add(employee);
-
+        employees.add(employee);
+        System.out.println("Employee added successfully.");
     }
 
     public void updateSalary(String name, double salary) {
-        // Update salary
-        for (Employee employee : EmployeeManagement) {
+        for (Employee employee : employees) {
             if (name.equals(employee.getName())) {
                 employee.setSalary(salary);
-                break;
+                System.out.println("Salary updated successfully.");
+                return;
             }
         }
-
+        System.out.println("Employee not found.");
     }
 
-    public void displayemployeesDetails() {
-        // display all emplyee's Detail's
-        for (Employee employee : EmployeeManagement) {
-            System.out.println(employee + "\n");
+    public void displayEmployeesDetails() {
+        if (employees.isEmpty()) {
+            System.out.println("No employees to display.");
+        } else {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
         }
     }
-
 }
 
-public class quiz {
-    private static EmployeeManagement em = new EmployeeManagement();
+public class Main {
+    private static EmployeeManagementSystem em = new EmployeeManagementSystem();
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Employee's management System");
-        Option();
-
+        System.out.println("Employee Management System");
+        option();
         sc.close();
     }
 
-    public static void Option() {
+    public static void option() {
         int option = 0;
-        while (option != 5) {
+        while (option != 4) {
             System.out.println("[1] Add Employee");
             System.out.println("[2] Update Salary");
-            System.out.println("[3] Display all Emplyee's Detail's");
+            System.out.println("[3] Display all Employees' Details");
             System.out.println("[4] Exit");
             System.out.print("Option: ");
             option = sc.nextInt();
             sc.nextLine();
             switch (option) {
                 case 1:
-                    System.out.print("Emplyee's Name: ");
+                    System.out.print("Employee's Name: ");
                     String name = sc.nextLine();
                     System.out.print("ID: ");
                     int id = sc.nextInt();
@@ -103,25 +98,21 @@ public class quiz {
                 case 2:
                     System.out.print("Name: ");
                     String n = sc.nextLine();
-                    System.out.println("Salary: ");
+                    System.out.print("Salary: ");
                     double d = sc.nextDouble();
-
                     em.updateSalary(n, d);
                     break;
                 case 3:
                     System.out.println();
-                    em.displayemployeesDetails();
+                    em.displayEmployeesDetails();
                     break;
                 case 4:
                     System.out.println("Exiting.....");
-
+                    break;
                 default:
                     System.out.println("Invalid Input!");
                     break;
             }
-
         }
-
     }
-
 }
