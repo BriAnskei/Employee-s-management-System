@@ -1,118 +1,114 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Employee {
-    private String name;
-    private int id;
-    private double salary;
+class Book {
+    String tittle;
+    String author;
+    double price;
 
-    public Employee(String name, int id) {
-        this.name = name;
-        this.id = id;
+    public Book(String tittle, String author) {
+        this.author = author;
+        this.tittle = tittle;
+
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public double getSalary() {
-        return salary;
+    public String getTittle() {
+        return tittle;
     }
 
     @Override
     public String toString() {
-        return "Employee{id=" + id + ", name='" + name + "', salary=" + salary + '}';
+        return "{[Tittle: " + tittle + "] \n" + "Author: " + author + "\n" + "Price: " + price + '}' + "\n";
     }
+
 }
 
-class EmployeeManagementSystem {
-    private ArrayList<Employee> employees = new ArrayList<>();
+class Bookstore {
+    private ArrayList<Book> BookManagement = new ArrayList<>();
 
-    public void addEmployee(String name, int id, double salary) {
-        Employee employee = new Employee(name, id);
-        employee.setSalary(salary);
-        employees.add(employee);
-        System.out.println("Employee added successfully.");
+    public void addBook(String Tittle, String author, double price) {
+        Book book = new Book(Tittle, author);
+        book.setPrice(price);
+        BookManagement.add(book);
+
     }
 
-    public void updateSalary(String name, double salary) {
-        for (Employee employee : employees) {
-            if (name.equals(employee.getName())) {
-                employee.setSalary(salary);
-                System.out.println("Salary updated successfully.");
+    public void updateBookPrice(String title, double price) {
+        for (Book book : BookManagement) {
+            if (title.equals(book.getTittle())) {
+                book.setPrice(price);
                 return;
             }
         }
-        System.out.println("Employee not found.");
+        System.out.println("Book not Found");
     }
 
-    public void displayEmployeesDetails() {
-        if (employees.isEmpty()) {
-            System.out.println("No employees to display.");
+    public void displayAllBookDetails() {
+        if (BookManagement.isEmpty()) {
+            System.out.println("There are no books Data");
         } else {
-            for (Employee employee : employees) {
-                System.out.println(employee);
+            for (Book book : BookManagement) {
+                System.out.println(book);
             }
         }
     }
 }
 
-public class Main {
-    private static EmployeeManagementSystem em = new EmployeeManagementSystem();
+public class quiz {
+    private static Bookstore bookstore = new Bookstore();
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Employee Management System");
+        System.out.println("Bookstore management System");
         option();
-        sc.close();
     }
 
     public static void option() {
         int option = 0;
+
         while (option != 4) {
-            System.out.println("[1] Add Employee");
-            System.out.println("[2] Update Salary");
-            System.out.println("[3] Display all Employees' Details");
+            System.out.println("[1] Add Book");
+            System.out.println("[2] Update Book Price");
+            System.out.println("[3] Display all Book Detail's");
             System.out.println("[4] Exit");
             System.out.print("Option: ");
             option = sc.nextInt();
             sc.nextLine();
             switch (option) {
                 case 1:
-                    System.out.print("Employee's Name: ");
-                    String name = sc.nextLine();
-                    System.out.print("ID: ");
-                    int id = sc.nextInt();
-                    System.out.print("Salary: ");
-                    double salary = sc.nextDouble();
-                    em.addEmployee(name, id, salary);
+                    System.out.print("Enter Tittle: ");
+                    String tittle = sc.nextLine();
+                    System.out.print("Book Author: ");
+                    String author = sc.nextLine();
+                    System.out.print("Prize: ");
+                    double price = sc.nextDouble();
+                    bookstore.addBook(tittle, author, price);
                     break;
                 case 2:
-                    System.out.print("Name: ");
-                    String n = sc.nextLine();
-                    System.out.print("Salary: ");
-                    double d = sc.nextDouble();
-                    em.updateSalary(n, d);
+                    System.out.print("Tittle: ");
+                    String titt = sc.nextLine();
+                    System.out.print("Enter prize: ");
+                    double pppp = sc.nextDouble();
+
+                    bookstore.updateBookPrice(titt, pppp);
                     break;
                 case 3:
-                    System.out.println();
-                    em.displayEmployeesDetails();
+                    System.out.println("All Book Details");
+                    bookstore.displayAllBookDetails();
                     break;
                 case 4:
-                    System.out.println("Exiting.....");
-                    break;
+                    System.out.println("Exiting.. . . .. ");
                 default:
                     System.out.println("Invalid Input!");
                     break;
             }
+
         }
+
     }
+
 }
