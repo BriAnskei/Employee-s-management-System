@@ -1,8 +1,5 @@
 // New Code for Data manipulation.
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 class ArrayManipulation {
     private int[] numbers;
@@ -60,30 +57,4 @@ class ArrayManipulation {
     }
 
 }
-
-public class quiz {
-    private static Scanner sc = new Scanner(System.in);
-
-    public static void main(String[] args) {
-
-        System.out.print("Enter the Size of the Array: ");
-        int size = sc.nextInt();
-        int Array[] = new int[size];
-        ArrayManipulation am = new ArrayManipulation(Array);
-        Random random = new Random();
-
-        for (int i = 0; i < Array.length; i++) {
-            Array[i] = random.nextInt(30) + 1;
-        }
-
-        am.printArray();
-        System.out.println("Sum: " + am.findSum());
-        System.out.print("Doubled: ");
-        am.doubleArray();
-        System.out.println("Max: " + am.findMax());
-        System.out.print("Reversed: ");
-        am.reverseArray();
-
-    }
-
 }
