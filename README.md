@@ -24,6 +24,7 @@ class ArrayManipulation {
         return sum;
     }
 
+        //Double the value of each elements in the Array
     public void doubleArray() {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] *= 2;
@@ -62,6 +63,7 @@ class ArrayManipulation {
 
 
 //Some code to use to future Excercise or project.
+//This is example is from the Shopping Management Systsem. It has a methods that Addproduct(to the cart/Inventory), removeProduct based on the name, Display all the product Details that are in the cart/Inventory, Calaculate the total cost of all product that are in the cart/Inventory based on there quantity and price,Search for a product based on the name and display its detail and update product.
 
 
 class Product {
@@ -157,6 +159,7 @@ class Inventory {
         }
     }
 
+    
     public double calculateCost() {
         double totalPrice = 0;
         for (Product product : Cart) {
