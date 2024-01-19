@@ -1,6 +1,7 @@
 // New Code for Data manipulation.
 
 
+
 class ArrayManipulation {
     private int[] numbers;
 
@@ -64,6 +65,9 @@ class ArrayManipulation {
 
 //Some code to use to future Excercise or project.
 //This is example is from the Shopping Management Systsem. It has a methods that Addproduct(to the cart/Inventory), removeProduct based on the name, Display all the product Details that are in the cart/Inventory, Calaculate the total cost of all product that are in the cart/Inventory based on there quantity and price,Search for a product based on the name and display its detail and update product.
+
+//To be not confuse. this code patern where the setters and function methods are in the separate class is represent as Model-View-Controller"(MVC), Where it seperates the Model(Product class), Controler(Inventory class) and View in the (Inventory class) Because it reporesent and view for inputs and Details.
+
 
 
 class Product {
