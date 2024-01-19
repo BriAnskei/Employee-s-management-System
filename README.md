@@ -58,3 +58,141 @@ class ArrayManipulation {
 
 }
 }
+
+
+
+//Some code to use to future Excercise or project.
+
+
+class Product {
+    private int productId;
+    private String productName;
+    private double price;
+    private int quantityinStock;
+
+    public Product(int productId, String productName) {
+        this.productId = productId;
+        this.productName = productName;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantityinStock) {
+        this.quantityinStock = quantityinStock;
+    }
+
+    public int getId() {
+        return productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantityinStock;
+    }
+
+    @Override
+    public String toString() {
+        return "{[Name: " + productName + "] \n" + "ID: " + productId + "\n" + "Price: " + price + "\nQuantity: "
+                + quantityinStock + '}' + "\n";
+    }
+
+}
+
+class Inventory {
+    private ArrayList<Product> Cart = new ArrayList<>();
+   
+
+    public void addProduct(int productId, String productName, double price, int quantityinStock) {
+        if (price <= 0 || quantityinStock <= 0) {
+            System.out.println("Input price and quantity");
+            return;
+        }
+
+        Product product = new Product(productId, productName);
+        product.setQuantity(quantityinStock);
+        product.setPrice(price);
+        Cart.add(product);
+    }
+
+    public void removeProduct(String name) {
+        Iterator<Product> it = Cart.iterator();
+        if (!it.hasNext()) {
+            System.out.println("There is no product in the Cart");
+            return;
+        }
+
+        while (it.hasNext()) {
+            Product product = it.next();
+            if (product.getProductName().equals(name)) {
+                it.remove();
+                System.out.println("product " + name + " Succesfully removed in the Cart");
+                return;
+            }
+
+        }
+        System.out.println("Product: " + name + " is not in the Cart");
+        return;
+
+    }
+
+    public void displayAllproducts() {
+        if (Cart.isEmpty()) {
+            System.out.println("There is no Product's in the Cart");
+            return;
+        } else {
+            System.out.println("Cart Item's");
+            for (Product product : Cart) {
+                System.out.println(product);
+            }
+            return;
+        }
+    }
+
+    public double calculateCost() {
+        double totalPrice = 0;
+        for (Product product : Cart) {
+            totalPrice += product.getPrice() * product.getquantity();
+        }
+        return totalPrice;
+
+    }
+
+    public void searchProduct(String name) {
+        for (Product product : Cart) {
+            if (product.getProductName().equals(name)) {
+                System.out.println("Product Details");
+                System.out.println(product);
+                return;
+            }
+        }
+        System.out.println(name + " is not in the Inventory");
+    }
+    
+
+    public void updateProduct(String name, int quantity, double price) {
+        for (Product product : Cart) {
+            if (product.getProductName().equals(name)) {
+                product.setQuantity(quantity);
+                product.setPrice(price);
+                System.out.println("Item Succesfully updated");
+                return;
+            } else {
+                System.out.println(name.toUpperCase() + " is not in the Inventore");
+            }
+        }
+
+    }
+
+}
+
+
+
